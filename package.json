@@ -1,0 +1,15 @@
+{
+  "name": "paint.io",
+  "version": "0.1.0",
+  "description": "Simple collaborative paint using Canvas and Socket.io.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Tchitchigin",
+  "license": "MIT",
+  "dependencies": {
+    "restify": "^7.2.1",
+    "socket.io": "^2.1.1"
+  }
+}
