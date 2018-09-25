@@ -16,15 +16,20 @@ io.on('connection', function (socket) {
 
   // first send the history to the new client
   line_history.forEach(line => {
-      socket.emit('draw_line', line);
+    socket.emit('draw_line', line);
   });
 
   // add handler for message type "draw_line".
   socket.on('draw_line', function (data) {
-      // add received line to history
-      line_history.push(data);
-      // send line to all clients
-      io.emit('draw_line', data);
+    // add received line to history
+    line_history.push(data);
+    // send line to all clients
+    io.emit('draw_line', data);
+  });
+
+  socket.on('clear_canvas', function () {
+    line_history = [];
+    io.emit('clear_canvas');
   });
 });
 

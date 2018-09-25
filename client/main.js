@@ -34,6 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx_fg.clearRect(0, 0, canvas_fg.width, canvas_fg.height);
   }
 
+  function clearBG() {
+    ctx_bg.fillStyle = 'ivory';
+    ctx_bg.fillRect(0, 0, canvas_bg.width, canvas_bg.height);
+  }
+
   function drawLine(canvas, context, line) {
     const startX = (line.start.x * canvas.width) | 0;
     const startY = (line.start.y * canvas.height) | 0;
@@ -84,6 +89,14 @@ document.addEventListener("DOMContentLoaded", () => {
     drawLine(canvas_bg, ctx_bg, line);
   });
 
-  ctx_bg.fillStyle = 'ivory';
-  ctx_bg.fillRect(0, 0, canvas_bg.width, canvas_bg.height);
+  socket.on('clear_canvas', function () {
+    clearBG();
+  });
+
+  const button_clear = document.getElementById('clear');
+  button_clear.addEventListener('click', function () {
+    socket.emit('clear_canvas');
+  });
+
+  clearBG();
 });
